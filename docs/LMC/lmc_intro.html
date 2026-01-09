@@ -1,1 +1,199 @@
-<h1> Introduction to Little Man Computer</h1>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title> LMC intro.</title>
+	<link rel="stylesheet" href="nn_read.css"  />
+</head>
+<body lang="en-NZ" link="#000080" vlink="#800000" dir="ltr">
+<h1 >LMC introduction. </h1>
+Power of the computer does not come from complexity. It comes from simplicity,
+repetition, and speed.<br>
+<p>
+Consistent with this idea, the actual hardware of a computer is quite simple.
+There are only a few basic operations that a computer can perform.
+We been learning digital logic circuits that are the building blocks of a computer 
+for not that long and we already have all building blocks to construct
+a computer.
+
+<h2>Key here is Stored Program concept.</h2>
+Main thing here is that program is stored in memory and can be
+easily(one can hope)  modified.<br/>
+<!-- Primary sources on the stored-program concept -->
+ It seems natural to us but it is relatively new idea.
+<section id="primary-sources">
+    <h2>Primary sources on the stored-program concept</h2>
+    <p>Key primary documents and trusted online resources for the origins of the stored-program idea.</p>
+    <ul>
+        <li><strong>Von Neumann</strong — "First Draft of a Report on the EDVAC" (1945). Overview and foundational statement of the stored-program concept. See the Computer History Museum overview and scanned copies available through archival collections.
+            <br/><a href="https://computerhistory.org/blog/the-first-draft-report-on-the-edvac/" target="_blank" rel="noopener">Computer History Museum: EDVAC / First Draft overview</a>
+        </li>
+        <li><strong>Manchester Small-Scale Experimental Machine ("Baby")</strong — Williams &amp; Kilburn (1948). First working stored-program implementation (Manchester). University and museum pages document the machine and original reports.
+            <br/><a href="https://www.computerhistory.org/atchm/manchester-baby-the-worlds-first-stored-program-computer/" target="_blank" rel="noopener">Computer History Museum: Manchester Baby</a>
+            <br/><a href="https://www.manchester.ac.uk/discover/news/manchester-baby/" target="_blank" rel="noopener">University of Manchester: Manchester Baby</a>
+        </li>
+        <li><strong>EDSAC / Maurice V. Wilkes</strong — EDSAC (1949) and Wilkes' book <em>The Preparation of Programs for an Electronic Digital Computer</em> (1951). Early operational stored-program computer and programmer-oriented documentation.
+            <br/><a href="https://computerhistory.org/collections/catalog/102646200" target="_blank" rel="noopener">Computer History Museum: EDSAC resources</a>
+        </li>
+        <li><strong>A. M. Turing</strong — "On Computable Numbers, with an Application to the Entscheidungsproblem" (1936). Theoretical foundation for universal machines and program-as-data thinking; see Turing Archive.
+            <br/><a href="https://www.turing.org.uk/publications/archive/pdf/" target="_blank" rel="noopener">Turing Archive: publications and scanned papers</a>
+        </li>
+        <li><strong>Konrad Zuse</strong — Zuse's Z3 (1941) and his work on program representation and <em>Plankalkül</em>. Important pre-EDVAC developments in program and machine design.
+            <br/><a href="https://www.deutsches-museum.de/en/collection/tech-and-science/computers/zuse-z3" target="_blank" rel="noopener">Deutsches Museum: Zuse Z3</a>
+        </li>
+    </ul>
+</section>
+
+</p>
+<p>
+The Little Man Computer (LMC) is a simplified model of a computer 
+that demonstrates how a computer works at its most basic level.
+</p>
+<h1> Layout of the Little Man Computer.</h1>
+We mentioned before that a computer consists of three main parts:
+<ul><li>Memory</li><li>Input/Output</li><li>Processor</li></ul>
+as shown in the figure below.
+ <figure style="border: 2px solid lightgray; padding: 10px; width: 30% ; margin: 5px auto;">
+<img src="Images/architecture2.png"  style="width: 100%;  height: 100%; object-fit: cover;" alt="architecture2.png">
+<figcaption>  Diagram of the computer. </figcaption>
+</figure>
+
+Now let's see what we want to achieve with the LMC. 
+We start with design of software. So, what are operations
+that we want to perform?
+<h2> Operations of the LMC. </h2>
+The LMC should be able to perform the following operations:
+<ul>
+<li>Store data in memory.</li>
+<li>Retrieve data from memory.</li>
+<li>Perform arithmetic operations on data.</li>
+<li>Make decisions based on data.</li>
+<li>Input data from the user.</li>
+<li>Output data to the user.</li>
+</ul> 
+<p>
+Sequence of steps that the LMC will follow to perform these operations
+is called an algorithm or a program. The program should be stored in memory
+and executed by the processor.<br>
+If operations are to be stored in memory, we need a way to represent them, as numbers.
+This is done using a set of instructions called the <b>instruction set.</b>
+</p>
+<h3>Instruction Format</h3>
+<p>
+    Some instructions are to work with memory. So it seems that we need to have
+    a way to address memory locations. </b>
+    Then we can select following format for instructions:
+    <ul><li>Opcode (operation code), one decimal digit: specifies the operation to be performed.</li>
+    <li>Operand, two decimal digits: specifies the memory address or data to be used in the operation.</li></ul>
+     <figure style="border: 2px solid lightgray; padding: 10px; width: 30% ; margin: 5px auto;">
+<img src="Images/LMC_instruction_format.svg"  style="width: 100%;  height: 100%; object-fit: cover;"
+ alt="LMC_instruction_format.svg">
+<figcaption>  Instruction format. </figcaption>
+</figure>
+</p>
+<p>We put some limitations on the LMC:</p>
+<ul>
+<li>Memory is limited to 100 locations (00-99).</li>
+<li>We can perform up to 10 operations.</li>
+</ul>
+
+Of course, these limitations are not present in real computers. Memory address, for example,
+is usually represented using binary numbers and can be much larger. In modern computers,    
+memory addresses are usually 32 or 64 bits long, allowing for a much larger address space.  <br>
+They are just to make the LMC simple enough to understand.
+</p>
+<h3>Operations of the LMC</h3>
+<p>
+The LMC has a limited set of operations, each represented by a 3-digit decimal number.
+To make operations more human-friendly there is a mnemonics for each operation.
+<ul>
+<li>000, written as HLT: Halt the program.</li>
+<li>1xx, written as ADD xx: Add the value at memory location xx to the accumulator.</li>
+<li>2xx, written as SUB xx: Subtract the value at memory location xx from the accumulator.</li>
+<li>3xx: Store the value in the accumulator at memory location xx.</li>
+<li>5xx: Load the value from memory location xx into the accumulator.</li>
+<li>6xx: Jump to instruction at memory location xx.</li>
+<li>7xx: Jump to instruction at memory location xx if the accumulator is positive.</li>
+<li>8xx: Jump to instruction at memory location xx if the accumulator is zero.</li>
+<li>901: Input a value and store it in memory location 01 (the input buffer).</li>
+<li>902: Output a value from memory location 02 (the output buffer).</li>
+</ul>
+Now we go through an example of a simple program that uses these operations.
+</p>
+<h2> More hardware is needed.</h2>
+<h3>Program Counter (PC) and Instruction Register (IR)</h3>
+<p>
+To execute these operations, the LMC needs some additional hardware components.
+Any program consists of a sequence of instructions that are stored in memory.
+To keep track of which instruction to execute next, the LMC uses a
+<b>Program Counter (PC)</b>. The PC is a register that holds the address of
+the next instruction to be executed. After each instruction is executed, the PC is
+incremented to point to the next instruction in memory.
+ <figure style="border: 2px solid lightgray; padding: 10px; width: 30% ; margin: 5px auto;">
+<img src="Images/CPU1.svg"  style="width: 100%;  height: 100%; object-fit: cover;"
+ alt="CPU1.svg">
+<figcaption>  Program Counter and Instruction Register. </figcaption>
+</figure>
+Instruction to be executed is fetched from memory using the address in the PC. It is stored
+in another register called the Instruction Register (IR) before being decoded and executed.
+</p>
+<h3>Accumulator and ALU</h3>
+<p>
+    We need to perform arithmetic operations on data. For this, we need an
+    Arithmetic Logic Unit (ALU) and a register to hold data being processed.
+    The ALU is responsible for performing arithmetic operations such as addition
+    and subtraction. The register that holds data being processed is called the
+    <b>Accumulator</b>.
+<figure style="border: 2px solid lightgray; padding: 10px; width: 30% ; margin: 5px auto;">
+<img src="Images/CPU2.svg"  style="width: 100%;  height: 100%; object-fit: cover;"
+ alt="CPU2.svg">
+<figcaption>  Accumulator and ALU. </figcaption>
+</figure>
+</p>
+<p>
+    Now we connect the ALU and Accumulator. We choose minimum/simplest design.
+    The ALU will have two inputs: one from the Accumulator and another from memory.
+    The output of the ALU will be connected back to the Accumulator. This way,
+    the result of any arithmetic operation will be stored in the Accumulator.
+    <figure style="border: 2px solid lightgray; padding: 10px; width: 30% ; margin: 5px auto;">
+<img src="Images/CPU3.svg"  style="width: 100%;  height: 100%; object-fit: cover;"
+ alt="CPU3.svg">
+<figcaption>  Accumulator, memory and ALU connections. </figcaption>
+</figure>
+In our case ALU performs only 2 operations: addition and subtraction.
+<ul>
+<li>1xx: Add the value at memory location xx to the accumulator.</li>
+<li>2xx: Subtract the value at memory location xx from the accumulator.</li>
+</ul>
+So <b>122</b> code will take value from memory location 22, add contents of
+Acc to it and store result in Acc.
+</p>
+
+<h3>Memory operations.</h3>
+There are two memory oerations.
+   <figure style="border: 2px solid lightgray; padding: 10px; width: 30% ; margin: 5px auto;">
+<img src="Images/CPU4.svg"  style="width: 100%;  height: 100%; object-fit: cover;"
+ alt="CPU4.svg">
+<figcaption>  Memory operations - load/store value into/from Acc. </figcaption>
+</figure>
+<b>LDA xx</b> copies value from memory address xx into Acc,<br>
+<b>STO xx</b> copies value from Acc into memory address xx.<br>
+
+Now we are in position to start writing some simple code.
+
+<h2> Simple LMC programs.</h2>
+<h3> Example program in LMC - memory operations</h3>
+<p>There are two memory operations in the LMC: loading and storing. 
+    Loading is the process of moving data from memory into the accumulator, 
+    while storing is the process of moving data from the accumulator into memory.
+
+    Let's start with storing a value in memory. We fire LMC simulator and enter
+
+</p>
+
+<h1> It is not enough!</h1>
+What we achieved so far is ability to add and subtract values 
+stored in memory. 
+
+</body>
+</html>
