@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title> LMC intro.</title>
+	<link rel="stylesheet" href="nn_read.css"  />
+</head>
+<body lang="en-NZ" link="#000080" vlink="#800000" dir="ltr">
+<h1 >LMC branching. </h1>
+
+<h1> What we have so far is not enough.</h1>
+What we achieved so far is ability to add and subtract values 
+stored in memory. That is not enough for general computation.<br/>
+<h2> Turing-complete system. </h2>
+There are many possible algorithms. Mathematician Alan Turing showed
+that everything that can be calculated (and some things can not) can be
+done by <b>Turing machine.</b>
+For computational system system to be Turing-complete, following requirements
+should be met:
+<ol>
+    <li> It should provide branching </li>
+    <li> It should provide loops.</li>
+    <li> Memory should be infinite.</li>
+</ol> 
+****INSERT FLOW CHART<br/>
+
+<h2>Branching (conditional execution) in LMC</h2>
+<p>
+How branching can be achieved?<br/>
+You can recall that algorithm is a sequence of operations and each
+operation is stored in memory at certain address. Program Counter (PC, pointer to 
+memory location)
+keeps track of what is done.<br/>
+If we want to interrupt sequential execution, simple way is to change
+the value stored in PC.<br/>
+</p>
+<h3> Unconditional jump - BRA XX. </h3>
+First and not really conditional operator is <b>BRA XX.</b>
+It writes value <b>XX</b> into Program Counter.<br/>
+Here is an example of unconditional jump:<br/>
+<pre style="background-color: rgb(200,200,250);">
+INP
+STO 20
+INP
+STO 21
+BRA 0
+HLT</pre>
+Programs goes around forever - we made <b>infinite loop.</b>
+
+<h3> Jump if 0 - BRZ XX</h3>
+<p>
+Here is true conditional jump: value XX is written into PC if Accumulator contains 0.
+Overall result is conditional jump.<br/>
+Here is the example - program which count down from specified number down to 0.
+
+<pre style="background-color: rgb(200,200,250);">
+INP
+STO 20
+INP
+STO 21
+SUB 20
+OUT
+BRZ 8
+BRA 4
+HLT</pre>
+</p>
+
+<h3> Jump if 0 - BRP XX </h3>
+<p>
+
+
+</p>
+
+<h2>  Some non-critical but nice improvements.</h2>
+We have all critical components: memory storage, conditional execution and
+cycles.<br>
+
+
+</body>
+</html>
