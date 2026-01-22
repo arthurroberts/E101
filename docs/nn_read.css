@@ -1,0 +1,41 @@
+table{
+          
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto; /* Centers the table */
+      border-collapse: collapse; /* merge borders */ 
+      border-spacing: 0; /* remove gaps */
+}
+td {   
+      border: solid 1px black; 
+      padding: 5px;
+      text-align: center;}               
+th {  border: solid 1px black; 
+      color: black;  
+      padding: 5px;
+      background: rgb(11, 182, 182);}
+
+h1 {  color:  darkblue;}
+h2 {  color:  darkblue;}
+h3 {  color:  darkblue;}
+
+.column {
+  float: left;
+  width: 50.0%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+body {
+	margin: 2em auto;
+   max-width: 800px;
+   padding: 1em;
+   background-color: rgb(250,250,250);
+   line-height: 1.5em;
+}
+
