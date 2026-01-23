@@ -31,6 +31,27 @@ h3 {  color:  darkblue;}
   clear: both;
 }
 
+.box { border: 2px solid #333; 
+       padding: 20px 12px 12px; 
+       width: 80%; 
+       position: relative; 
+       border-radius: 6px;
+} 
+.title { position: absolute; 
+         top: -12px; 
+         left: 12px; 
+         background: white; 
+         padding: 0 6px; 
+         font-weight: bold;
+}
+.code_box { border: 2px solid #333; 
+       padding: 5px 2px 2px; 
+       background:rgb(150,150,240);
+       width: 40%; 
+       position: relative; 
+       border-radius: 2px;
+} 
+
 body {
 	margin: 2em auto;
    max-width: 800px;
