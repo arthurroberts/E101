@@ -1,1 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="../nn_read.css"  />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  <script type="text/javascript" async="" src="https://ecs.wgtn.ac.nz/libs/mathjax/26/MathJax.js?config=TeX-MML-AM_CHTML">
+</script> 
+	<title> Number systems.</title>
+</head>
+<body lang="en-NZ" link="#000080" vlink="#800000" dir="ltr">
+<h1>Number systems. Binary Numbers. </h1>
+
+<h2>Positional systems.  </h2>
+
+<p>
+We are used to decimal system - we use 10 symbols to represent any number.
+So if we start counting... 0,1,2,3,4,5,6,7,8,9..
+Now we run out of symbols to write the number (10), what we do?
+When we want to represent 10 we use next digit to the left:<br>
+10 = 10<sup>1</sup> + 0.<br>
+It is positional system and value in second digit is count of how many 10s
+there are in this number.
+</p>
+
+Contribution of the value of every digit depends on which digit it is (where it is)-
+system we use is positional.
+<table border="1">>
+<tr>
+<th>Digit</th><th> digit5</th>
+<th> digit4</th>
+<th> digit3</th>
+<th> digit2</th>
+<th> digit1</th>
+</tr>
+<tr>
+<td>Weight</td>
+<td> 10<sup>4</sup> = 10000</td>
+<td> 10<sup>3</sup> = 1000</td>
+<td> 10<sup>2</sup> = 100</td>
+<td> 10<sup>1</sup> = 10</td>
+<td> 1 = 100</td>
+</tr>
+</table>
+Example: Number 567 can be written as:<br>
+567 = 5 * 100 + 6 * 10 + 7 *1
+<br>
+Not all number systems are positional. Roman, for example, is not.<br>
+
+
+Question: Why we use 10 symbols?
+
+<ul>
+ <li>We have 10 fingers</li>
+ <li> 10 is magic number</li>
+</ul> 
+In decimal we use 10 symbols for each position.
+For decimal system:
+<table border="1" cellpadding="1" cellspacing="1">
+<tr>
+ <th> digit5</th> <th>digit4</th> <th>digit3</th> <th>digit2</th> <th>digit1</th>
+</tr>
+<tr> 
+ <td>10,0000</td> <td>1,000</td> <td>100</td> <td>10</td> <td>1</td>
+</tr> 
+</table>
+
+Weight 104
+ = 10000 1000 = 10
+3
+ 100 = 102
+ 10 = 101
+ 1 = 100
+
+
+Other systems are possible, decimal is not only possible option.
+
+<h2>Binary system.</h2>
+Now we start working on converting numbers into computer hardware. It
+would be hard to have ten different voltages to represent ten decimal symbols.
+It is hard to design digital electronic device which works with 10 different voltages.
+<br> 
+In binary we use 2 symbols to represent all numbers. 
+Computer circuitry is required
+to operate using only two voltages (and one is usually 0). Basically it works 
+like a switch.<br>
+And symbols are 0 (there is no voltage) and 1 (yes, voltage is there).
+<br>
+We use same same approach for binary numbers - how much this particular symbol
+contribute to the value is based on position of this symbol.
+Lets start counting...<br>
+<ol>
+<li>value 0 is written as 0 and no great surprises here, symbol is available.</li>
+<li>value 1 is written as 1, symbol is available.</li>
+<li>value 2 - we have a problem, there is no symbol available for 2. So we use
+	positional approach - we write 10, on understanding that if symbol 1 is put
+	into one digit to the left, it means that it contributes 2 to the total value.
+	There are 10 types of people in the world - those who understand binary and those
+	who don't.
+</li>
+</ol>
+
+For binary system digit weights are:
+<table cellpadding="1" cellspacing="1">
+<tr><th>Digit</th>
+ <th>digit6</th>
+ <th>digit5</th>
+ <th>digit4</th>
+ <th>digit3</th>
+ <th>digit2</th>
+ <th>digit1</th>
+</tr>
+<tr> 
+<td>Weight</td> <td>64 = 2<sup>6</sup></td><td> 32 = 2<sup>5</sup></td>
+ <td>16 = 2<sup>4</sup></td><td>8 = 2<sup>3</sup></td> <td> 4=2<sup>2</sup></td><td> 2=2<sup>1</sup></td>
+</tr> 
+</table> 
+<h2>Conversion from Binary system to decimal.</h2>
+That is straightforward process. We take binary number, for example 1011.
+We write down weights of each digit:
+<table border="1" cellpadding="1" cellspacing="1">
+<tr> <th>Digit</th> <th>digit4</th> <th>digit3</th> <th>digit2</th> <th>digit1</th>
+</tr>
+<tr> 
+<td>Weight</td> <td>8</td> <td>4</td> <td>2</td> <td>1</td>
+</tr> 
+<tr> 
+<td>Value</td> <td>1</td> <td>0</td> <td>1</td> <td>1</td>
+</tr> 
+</table>
+Now we take only those weights where digit is 1 and add them up:<br>
+8 + 0 + 2 + 1 = 11.<br>
+So binary number 1011 is decimal number 11.<br><br>
+<div class="box">
+    <div class="title">Question:.</div>
+     Convert binary number 1101 to decimal.
+     <ol>
+      <li>13</li>
+      <li>8</li>
+      <li>10</li>
+     </ol>
+     <details>
+  <summary>Show:</summary>
+  <p>13: 1*8 + 1*4 + 0*2 +1*1</p>
+</details>
+</div>
+
+
+<h2>Conversion from Decimal to Binary.</h2>
+<h3> Intuitive way.</h3>
+We have set of powers of 2: ..64,32,16,8,4,2,1,0.<br>
+We want to convert decimal number to binary, say it is 45. 
+<ol>
+  <li> What is the biggest number taken from the set above which we can fit. It is 32. </li>
+  <li> If we have 32 counted for, then binary number looks like <b> 1XXXXX</b>,
+  where <b>XXXXX</b> should equal 45-32 = 13</li>
+  <li> Can we fit 2^4=16 into 13? No. So binary becomes <b> 10XXXX</b> and XXXX represents 13.</li>
+  <li> Can we fit 8 into 13? Yes, we can. Our number becomes <b> 101XXX</b> and <b> XXX</b>
+   represents 13-8 = 5</li>
+  <li> Can we fit 4 into 5? Yes, we can. Our number becomes <b> 1011XX</b> and <b> XX</b>
+   represents 5-4 = 1</li>
+  <li> Can we fit 2 into 1? No, we cannot. Our number becomes <b> 10110X</b> and <b> X</b>
+   represents 1.</li>
+  <li> Can we fit 1 into 1? Yes, we can. Our number becomes <b> 101101</b> and we are done.</li>
+  </ol>
+
+<div class="box">
+    <div class="title">Question:.</div>
+     Convert decimal number 7 to <b>binary</b>.
+     <ol>
+      <li>0111</li>
+      <li>1100</li>
+      <li>1001</li>
+     </ol>
+     <details>
+  <summary>Show:</summary>
+  <p> 7: 0*8 + 1*4 + 1*2 +1*1-> <b>0111</b></p>
+</details>
+</div>
+
+<div class="box">
+    <div class="title">Question:.</div>
+     Convert decimal number 2 to <b>binary</b>.
+     <ol>
+      <li>0010</li>
+      <li>0100</li>
+      <li>1011</li>
+     </ol>
+     <details>
+  <summary>Show:</summary>
+  <p> 2: 0*8 + 0*4 + 1*2 +0*1 -> <b>0010</b> </p>
+</details>
+</div>
+
+<h3> More formal way - repeated division.</h3>
+Another way to convert decimal number into binary is to use repeated division by 2.
+We take decimal number, say 45, and divide it by 2, keeping track of quotient and remainder.
+<table border="1" cellpadding="1" cellspacing="1">
+<tr> <th>Quotient</th> <th>Remainder</th> </tr>
+<tr> <td>45 / 2 = 22</td> <td>1</td> </tr>
+<tr> <td>22 / 2 = 11</td> <td>0</td> </tr>
+<tr> <td>11 / 2 = 5</td> <td>1</td> </tr>		
+<tr> <td>5 / 2 = 2</td> <td>1</td> </tr>		
+<tr> <td>2 / 2 = 1</td> <td>0</td> </tr>		
+<tr> <td>1 / 2 = 0</td> <td>1</td> </tr>		
+</table>
+Now we take remainders from bottom to top and write them down - it is binary representation
+of our decimal number 45 - it is 101101.	
+
+
+
+<h2>Counting in binary.</h2>
+We can count in binary as we do in decimal.
+<table border="1" cellpadding="1" cellspacing="1">
+<tr> <th>Decimal</th> <th>Binary</th></tr>
+<tr>  <td>0</td> <td>0</td></tr> 
+<tr>  <td>1</td> <td>1</td></tr> 
+<tr>  <td>2</td> <td>10</td></tr> 
+<tr>  <td>3</td> <td>11</td></tr> 
+<tr>  <td>4</td> <td>100</td></tr>
+<tr>  <td>5</td> <td>101</td></tr>
+</table>
+We can keep counting forever... but computers have limited memory.
+<p>
+  There is one thing to note here - we have finite number of digits to represent
+  binary number. We can not fit infinite number of digits into computer memory.
+  So if we have N bits to represent binary number, what is the biggest number
+  we can represent?
+</p>
+  Using N bits we can write 2<sup>N</sup> -1 numbers.
+For example using 3 bits we can write 2<sup>3</sup> -1 = 7 numbers (0 to 7):
+000, 001, 010, 011, 100, 101, 110, 111.<br>
+Using 8 bits we can write 2<sup>8</sup> -1 = 255 numbers (0 to 255).<br>
+Biggest number which can be written using 8 bits is 
+ \[ 128 \cdot 1 + 64 \cdot 1 + 32 \cdot 1 + 16 \cdot 1 + 8 \cdot 1 +
+  4 \cdot 1 + 2 \cdot 1 + 1 \cdot 1 = 255 \].<br>
+
+Using 16 bits we can write 2<sup>16</sup> -1 = 65535 numbers (0 to 65535).<br>
+
+What happens if we try to write number bigger than what can be represented
+using available number of bits?
+It is called <b>overflow</b> and it leads to unexpected results. And it happens a lot.
+</p>
+
+Are there other positional systems used in computing?
+Yes, there are. One of them is hexadecimal system.
+
+<h2>Hexadecimal</h2>
+<h3>Why hexadecimal?</h3>
+Hexadecimal system is base 16 system. It uses 16 symbols to represent numbers.
+Why we need it?
+</p>
+Binary numbers are long and hard to read. 
+As an example here is C code to print memory address of a variable in binary:
+<br>
+<a href="Code/var_addr.c" download> <button>Download file var_addr.c .</button></a>
+<br>
+<!--
+<pre>
+#include <stdio.h>
+#include <stdint.h>
+#include <inttypes.h>   
+void print_binary(uintptr_t n) {
+    for (int i = sizeof(n) * 8 - 1; i >= 0; i--) {
+        putchar((n & (1UL << i)) ? '1' : '0');
+    }
+} 
+int main() {
+    int var = 42;
+    int *ptr = &var;
+    uintptr_t addr = (uintptr_t)ptr;
+    printf("Pointer address in binary: ");
+    print_binary(addr);
+    putchar('\n');
+    return 0;
+}
+</pre>
+-->  
+
+If we run this code we get something like:
+<pre>
+Pointer address in binary: 0000000000000000000000000010110100101101101110000110100000000
+</pre>
+Not very readable: there are 64 bits (width of memory address in a 64-bit system) 
+there and it is hard to figure out what is going on.
+</p>
+Hexadecimal numbers are more compact and easier to read.
+Hexadecimal is base 16 system, so it uses 16 symbols: 0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F
+Where A=10, B=11, C=12, D=13, E=14, F=15 in decimal.
+<p>
+  So we start counting in hexadecimal:
+  <table border="1" cellpadding="1" cellspacing="1">
+<tr> <th>Decimal</th> <th>Hex</th></tr>
+<tr>  <td>0</td> <td>0</td></tr> 
+<tr>  <td>1</td> <td>1</td></tr> 
+<tr>  <td>2</td> <td>2</td></tr> 
+<tr>  <td>3</td> <td>3</td></tr> 
+<tr>  <td>4</td> <td>4</td></tr>
+<tr>  <td>5</td> <td>5</td></tr>
+<tr>  <td>6</td> <td>6</td></tr>
+<tr>  <td>7</td> <td>7</td></tr>
+<tr>  <td>8</td> <td>8</td></tr>
+<tr>  <td>9</td> <td>9</td></tr>
+<tr>  <td>10</td> <td>(oops, no more symbols)A</td></tr>
+<tr>  <td>11</td> <td>B</td></tr>
+<tr>  <td>12</td> <td>C</td></tr>
+<tr>  <td>13</td> <td>D</td></tr>
+<tr>  <td>14</td> <td>E</td></tr>
+<tr>  <td>15</td> <td>F</td></tr>
+<tr>  <td>16</td> <td>10</td></tr>
+<tr>  <td>17</td> <td>11</td></tr>
+</table>
+
+</p>
+
+Hexadecimal is positional system, so each digit has weight based on position.
+Digit weights are:
+<table cellpadding="1" cellspacing="1">
+<tr><th>Digit</th>
+ <th>digit6</th>
+ <th>digit5</th>
+ <th>digit4</th>
+ <th>digit3</th>
+ <th>digit2</th>
+ <th>digit1</th>
+</tr>
+<tr> 
+<td>Weight</td> <td>64 = 2<sup>6</sup></td><td> 16<sup>4</sup>= 65536</td>
+ <td>16<sup>3</sup>=4096</td><td>16<sup>2</sup>=256</td> <td> 16<sup>1</sup>=16</td><td> 16<sup>0</sup>=1</td>
+</tr> 
+</table> 
+As we pack more into each digit, numbers written in hexadecimal have less
+digits. <br>
+Hexadecimal is used a lot in computing and has special prefix 0x to indicate
+that number is hexadecimal. For example 0x2F is hexadecimal number.
+
+<h3>Conversion from hexadecimal to decimal.</h3>
+That is straightforward process. We take hexadecimal number, for example 0x2F.
+We write down weights of each digit:
+<table border="1" cellpadding="1" cellspacing="1">
+<tr> <th>Digit</th> <th>digit2</th> <th>digit1</th> </tr>
+<tr> 
+<td>Weight</td> <td>16</td> <td>1</td>
+</tr> 
+<tr> 
+<td>Value</td> <td>2</td> <td>F (15)</td>
+</tr> 
+</table>
+Now we take only those weights where digit is not 0 and add them up:<br>
+2 * 16 + 15 * 1 = 32 + 15 = 47.<br>
+So hexadecimal number 0x2F is decimal number 47.<br><br>
+<div class="box">
+    <div class="title">Question:.</div>
+     Convert hexadecimal number 0x0A3 to decimal.
+     <ol>
+      <li>163</li>
+      <li>143</li>
+      <li>173</li>
+     </ol>
+     <details>
+  <summary>Show:</summary>
+  <p>163: 10*16 + 3*1</p>
+</details>
+</div>
+
+<h3> Why 16? </h3>
+Indeed, why 16?
+<br>
+Because it is power of 2 - 2<sup>4</sup> = 16. It is easy to convert
+binary numbers into hexadecimal - we just group binary digits into
+groups of 4 bits (from right to left) and convert each group into
+hexadecimal digit.
+<br>
+<p>
+  Each hexadecimal digit represents 4 bits (nibble):
+  <table border="1" cellpadding="1" cellspacing="1">
+<tr> <th>Binary</th> <th>Hex</th></tr>
+<tr>  <td>0000</td> <td>0</td></tr> 
+<tr>  <td>0001</td> <td>1</td></tr> 
+<tr>  <td>0010</td> <td>2</td></tr> 
+<tr>  <td>0011</td> <td>3</td></tr> 
+<tr>  <td>0100</td> <td>4</td></tr>
+<tr>  <td>0101</td> <td>5</td></tr>
+<tr>  <td>0110</td> <td>6</td></tr>
+<tr>  <td>0111</td> <td>7</td></tr>
+<tr>  <td>1000</td> <td>8</td></tr>
+<tr>  <td>1001</td> <td>9</td></tr>
+<tr>  <td>1010</td> <td>A</td></tr>
+<tr>  <td>1011</td> <td>B</td></tr>
+<tr>  <td>1100</td> <td>C</td></tr>
+<tr>  <td>1101</td> <td>D</td></tr>
+<tr>  <td>1110</td> <td>E</td></tr>
+<tr>  <td>1111</td> <td>F</td></tr>
+</table>
+</p>
+<p>
+  As an example take binary number   <b>  1010 1111</b>: <br>
+  <ul>
+    <li>We group bits into groups of 4 (nibble):
+    1010 1111</li>
+    <li>
+    Now we convert each nibble into hexadecimal digit:
+    1010    1111 -> 0x A F  
+    So hexadecimal representation of this binary number is:
+    AF
+    </li>
+    <li>>
+    We want to check that it is correct:
+    <br>
+    A in hexadecimal is 10 in decimal, weight for this digit is 16.<br>
+    F in hexadecimal is 15 in decimal, weight for this digit is 1.<br>
+    So we convert hexadecimal number 0xAF into decimal:
+     0xAF = 10 * 16 + 15 * 1 = 175
+    <br>
+    Now we convert binary number 1010 1111 into decimal:
+    <br>
+    1*128 + 0*64 + 1*32 + 0*16 + 1*8 + 1*4 + 1*2 + 1*1 = 175.
+    </li>
+    </ul>
+    <br>
+    So conversion is correct.
+  </p>
+
+As an example take binary number:
+<br>
+ 1101101110000110100000000000
+<br>
+We group bits into groups of 4 (nibble):
+<br>
+ 1101 1011 1000 0110 1000 0000 0000
+<br>
+Now we convert each nibble into hexadecimal digit:
+<br>
+0x  D    B    8    6    8    0    0
+<br>
+So hexadecimal representation of this binary number is:
+<br>
+0xDB86800
+<br>
+Which is much more compact and easier to read.
+
+<h3> Using hexadecimal in computing </h3>
+Hexadecimal is used a lot in computing to represent memory addresses
+and other values.
+<br>
+For example here is the code above which prints memory address of a variable.
+<br>
+<a href="Code/var_addr.c" download>  <button>Download file var_addr.c .</button></a>
+<br>
+
+If we run this code we get something like:
+<pre>
+Pointer address in binary: 0000000000000000000000000010110100101101101110000110100000000
+Pointer address in hex: 0x2f6ed60
+Pointer address in decimal: 49812320
+</pre>
+As you can see hexadecimal representation is much more compact and easier to read.
+Another usage of hexadecimal is to represent colors in web design.
+We will cover that later in the course.<br>
+
+But we should not forget that computer hardware works with binary numbers.
+Hexadecimal is just more convenient way to represent binary numbers 
+and make them easier to read.
+
+<h2> Summary </h2>
+<p>
+We have learned about positional number systems.
+We have learned how to convert numbers from binary to decimal and back.
+We have learned about hexadecimal system and why it is used in computing.
+</p>
+
+</body>
+</html>
 
