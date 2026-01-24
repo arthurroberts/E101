@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ENGR101: Lecture 3 — Negative Binary Numbers</title>
+<link rel="stylesheet" href="../nn_read.css">
+<script type="text/javascript" async="" src="https://ecs.wgtn.ac.nz/libs/mathjax/26/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>        
+
+</head>
+
+<body>
+
+<h1>Binary number addition and negative binary numbers</h1>
+
+<h2 >Adding binary numbers</h2>
+We discussed that all numbers in computer are represented in binary form.
+So, arithmetic operations (addition, subtraction, multiplication, division)
+should be done in binary as well.<br>
+We start with addition.
+
+<h3 id="adding_decimal"> Adding decimal numbers. </h3>
+<p>It is done almost exactly the same way as for decimal numbers.</p>
+You hopefully recall that to add two decimal numbers together we use 
+<b>carry</b> - when result of addition of two digits is 10 or greater
+- we carry 1 to the next digit to the right.
+<ul>
+  <li>2 + 3 = 5</li>
+  <li>5 + 7 = 12 (2 with carry of 1)</li>
+  <li>237 + 548 = 783 (carry to second digit from the right)</li>
+</ul>
+
+<table border="1">
+  <colgroup>
+    <col style="width: 25%;">
+    <col style="width: 25%;">
+    <col style="width: 25%;">
+    <col style="width: 25%;"> <!-- Inline style for third column -->
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>Carry</td> <td>0</td> <td>1</td> <td>0</td>
+    </tr>
+    <tr> <td></td><td>2</td><td>3</td><td>7</td></tr>
+    <tr> <td></td><td>5</td><td>4</td><td>8</td></tr>
+    <tr>
+      <td>Result:</td>
+      <td>7</td>
+      <td>8</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+
+Single digit addition rules for decimal numbers:
+<ul>
+  <li>Add same digits</li>
+  <li>If sum is 10 or greater, write down rightmost digit and carry 1 to next digit</li>
+</ul>
+
+<h3>Adding binary numbers</h3>
+<p>Similarly, for binary numbers we use carry when sum of two digits is 2 or greater.</p>
+Single digit addition rules for binary numbers: 
+  <ul
+  <li>0 + 0 = 0</li>
+  <li>0 + 1 = 1</li>
+  <li>1 + 0 = 1</li>
+  <li>1 + 1 = 10 (0 with carry of 1)</li>
+</ul>
+<table border="1">
+  <colgroup>
+    <col style="width: 25%;">
+    <col style="width: 25%;">
+    <col style="width: 25%;">
+    <col style="width: 25%;"> <!-- Inline style for third column -->
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>Carry</td> <td>0</td> <td>1</td> <td>0</td>
+    </tr>
+    <tr>
+      <td>Number 1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Number 2</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Result:</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<!--
+<h3>Overflow. </h3>
+There is a danger lurking there when two <b>fixed length</b> binary numbers are
+added together.<br>
+-->
+
+Later we will design circuit to do the addition.
+
+<h2>What about negative numbers? — Signed magnitude representation</h2>
+<h3> There is no <b>"-"</b> in binary. </h3>
+<p>
+With decimal numbers we have special symbol to indicate negative number: <b>-</b>. 
+But if everything should be represented as combination of 0 and 1 for computer
+circuits to understand and this
+symbol is not available.
+How to represent negative numbers then?<br>
+We indicate sign by using the most significant bit (MSB).
+MSB is leftmost bit in binary number.</p>
+
+<h3>Signed-and-magnitude format. </h3>
+Simplest (but not best)  way would be to set leftmost bit to 1
+to indicate that number is negative. It is called
+ <b>signed-and-magnitude</b> representation.
+
+<br>For example, for 8-bit signed-magnitude representation:
+<p>
+<div class="row">
+  <div class="column">
+    <img src="Images/negat1.svg" alt="Signed magnitude diagram" 
+    style="width:80%;"
+    alt="negat1.svg">
+  </div>
+  <div class="column">
+    <br><br
+    <ul>
+      <li>Put 1 into the <strong>MSB</strong> for negative numbers</li>
+      <li>7 bits remain for magnitude</li>
+      <li>Range becomes from -127 to +127</li>
+    </ul>
+  </div>
+</div>
+</p>
+
+<h4>Example: -34 in signed magnitude</h4>
+<ul>
+  <li>Binary for +34:
+    <ul>
+      <li>34 = 32 + 2 = 2⁵ + 2¹</li>
+      <li>34 = 0010 0010</li>
+    </ul>
+  </li>
+  <li>Set MSB to 1:
+    <ul>
+      <li>-34 = 1010 0010</li>
+    </ul>
+  </li>
+</ul>
+If MSB is used as sign bit, range of representable numbers is halved:
+<ul>
+  <li>8-bit unsigned: 0 to 255:
+    \[ 1*2^7 + 1*2^6 + \dots + 1*2^0 = 255 \]
+  </li>
+  <li>8-bit signed-magnitude: -127 to +127<br>
+    7 bits for magnitude:
+    \[ 1*2^6 + \dots + 1*2^0 = 127 \]
+  </li>
+</ul>
+Problem solved! Not quite...
+
+<h3>Problems with signed magnitude</h3>
+It is rather simple-minded way to represent negative numbers and
+ not very good one.
+There are following problems here:
+<ul>
+  <li>Two representations of zero:
+    <ul>
+      <li>+0 = 0000 0000</li>
+      <li>-0 = 1000 0000</li>
+    </ul>
+  </li>
+  <li>
+    It is departure from positional system and arithmetic becomes 
+    more complex: 
+    we can not apply standard addition algorithm and expect correct result.<br>
+    As an example, lets try to add -5 and +1 using 
+    standard addition algorithm:
+<table>
+  <colgroup>
+    <col style="width: 20%;">
+    <col style="width: 20%;">
+    <col style="width: 20%;">
+    <col style="width: 20%;">
+    <col style="width: 20%;"> <!-- Inline style for third column -->
+  </colgroup>
+  <tbody>
+    <tr> <td>-5</td> <td>1</td> <td>1</td> <td>0</td> <td>1</td>  </tr>
+    <tr> <td>+1</td> <td>0</td>  <td>0</td>  <td>0</td> <td>1</td> </tr>
+    <tr> <td>Result:-6</td> <td>1</td><td>1</td><td>1</td> <td>0</td> </tr>
+  </tbody>
+</table>
+  And it is wrong. So, signed-magnitude numbers can not be added together using 
+  standard algorithm if  one (or both) number is negative. 
+  </li>
+</ul>
+
+<p>
+It will be not impossible to design algorithm (and implement it as a circuit)
+which works with signed-magnitude numbers but it will be different algorithm.
+
+There is a better way to represent negative numbers, use the same algorithm(hardware) 
+for both positive and negative numbers and keep algorithm simple.
+</p>
+
+<h2>Complementation (Two’s complement)</h2>
+Complementation at its core is:
+<ul>
+  <li>Standard addition algorithm should be used (digit by digit with carry) - so we 
+    can use same hardware for adding positive and negative numbers.
+  </li>
+  <li><strong>Represent -x as the number y such that x + y = 0</strong></li>
+  <li> Leftmost bit is still the sign bit, so range is halved compared to unsigned</li>
+  <li> Leftmost bit also contributes value and it is negative. So, for 4 bits 
+    number:<br>
+    1001<sub>2</sub> =  <strong>-</strong>2<sup>3</sup> *1 + 2<sup>2</sup> *0 +
+    + 2<sup>2</sup> *0 + 2<sup>2</sup> *1 = -8 +0+0+1 = -7<br>
+   Notice that contribution from leftmost (most significant) bit is negative.
+  </li>
+</ul>
+Now lets look how it works. We start with some example.<br>
+
+<h3>Example: Represent -3 using 4 bits</h3>
+
+<p>We want y such that: 3 + y = 0 , where y is in 2's complement form.</p>
+<p> In binary: 0011 + y = 0000</p>
+But what is y?<br>
+MSB (leftmost bit) of y is fixed: y is negative number and we used MSB as sign flag,
+so it has form 1XXX.<br>
+We have:
+3 - 8 + XXX<sub>10</sub> = 0 <br>
+From this to be satisfied we need: 
+XXX<sub>10</sub> = 5<sub>10</sub> = 101<sub>2</sub><br>
+Thus y = 1101<sub>2</sub> in 4-bit 2's complement representation of -3.<br>
+<p> Let check that it is correct and 1101<sub>2</sub> is representation of -3: <br>
+  We want to verify that 3 + (-3) = 0 <br>
+  or 0011 + 1101 = 0000 (in 4-bit representation, ignoring carry out).<br>
+  Lets do the addition:
+</p>
+<table>
+  <colgroup>
+    <col style="width: 10%;">
+    <col style="width: 10%;">
+    <col style="width: 10%;">
+    <col style="width: 10%;">
+    <col style="width: 10%;">
+    <col style="width: 10%;">
+  </colgroup>
+  <tbody>
+    <tr> <td>Carry</td> <td></td> <td>1</td> <td>1</td> <td>0</td> <td>1</td>  </tr>
+    <tr> <td>+3</td> <td></td><td>0</td>  <td>0</td>  <td>1</td> <td>1</td> </tr>
+    <tr> <td>y</td> <td></td><td>1</td>  <td>1</td>  <td>0</td> <td>1</td> </tr>
+    <tr> <td>Result:</td> <td>1</td><td>0</td><td>0</td><td>0</td> <td>0</td> </tr>
+  </tbody>
+</table>
+If we ignore carry out (leftmost 1), result is indeed 0000.<br>
+<p>Thus  <strong>1101</strong> in 4-bit two's complement representation of -3.</p>
+
+
+<h2>4‑bit complementation table</h2>
+We can manually compute two's complement representation for all
+4-bit numbers.<br>
+First two columns are positive numbers from 0 to 7,
+next two columns are negative numbers from -1 to -7,
+last column shows how negative numbers are constructed.
+<br>
+<table style="text-align: center;">
+<tr><th>Decimal</th><th>Binary</th><th></th></th><th>Decimal</th><th>Binary</th><th>Complementation</th></tr>
+<tr><td>+7</td><td>0111</td><td> </td><td>−1</td><td>1111</td><td>−8 + 2² + 2¹ + 2⁰</td></tr>
+<tr><td>+6</td><td>0110</td><td> </td><td>−2</td><td>1110</td><td>−8 + 2² + 2¹</td></tr>
+<tr><td>+5</td><td>0101</td><td> </td><td>−3</td><td>1101</td><td>−8 + 2² + 2⁰</td></tr>
+<tr><td>+4</td><td>0100</td><td> </td><td>−4</td><td>1100</td><td>−8 + 2²</td></tr>
+<tr><td>+3</td><td>0011</td><td> </td><td>−5</td><td>1011</td><td>−8 + 2¹ + 2⁰</td></tr>
+<tr><td>+2</td><td>0010</td><td> </td><td>−6</td><td>1010</td><td>−8 + 2¹</td></tr>
+<tr><td>+1</td><td>0001</td><td> </td><td>−7</td><td>1001</td><td>−8 + 2⁰</td></tr>
+</table>
+That is good to know, but how to find complement of any number
+without constructing such table?
+
+<h2>Algorithm: Finding the complement of any number</h2>
+There is simple algorithm to find two's complement of any number.<br>
+To find the two's complement of a number:
+<ul>
+  <li>Invert all bits</li>
+  <li>Add 1</li>
+</ul>
+Lets check algorithm with example and try to figure out why it works.
+<div class="box">
+  <strong>Example: complement of 3 (-3).</strong>
+  <ul>
+  <li>3 = 0011</li>
+  <li>Invert → 1100</li>
+  <li>Add 1 → 1101</li>
+  </ul>
+ <p>Check: 0010 (+2) + 1101 (−3) = 1111 (−1)</p>
+</div>
+So algorithm works. But why?
+
+<h2>Why algorithm works?</h2>
+<h3>Inversion explanation</h3>
+
+<p>Ignoring the sign bit, inverting the remaining bits produces a number that, 
+  when added to the original, yields the maximum representable value.</p>
+  What?<br>
+  It is easier to explain with example.
+  <ol>
+    <li> We start with decimal number 3.</li>
+    <li> Its binary representation is 0011.</li>
+    <li> Invert the bits to get 1100.</li>
+    <li> Now, add 0011 and 1100.
+      <table>
+        <colgroup>
+          <col style="width: 20%;">
+          <col style="width: 2%;">
+          <col style="width: 20%;">
+          <col style="width: 20%;">
+          <col style="width: 20%;">
+        </colgroup>
+        <tbody>
+          <tr> <td>Original:0011</td> <td></td><td>0</td>  <td>0</td>  <td>1</td> <td>1</td> </tr>
+          <tr> <td>Inverted:1100</td> <td></td><td>1</td>  <td>1</td>  <td>0</td> <td>0</td> </tr>
+          <tr> <td>Result:</td> <td>  </td><td>1</td><td>1</td><td>1</td> <td>1</td> </tr>
+        </tbody>
+      </table>
+      For each bit position it is either 0 + 1 or 1 + 0, resulting in 1.
+    </li>
+    <li> The result is 1111, which is 15 in decimal.</li>
+    <li> Notice that 15 is the maximum value representable with 4 bits (1111).</li>
+  </ol>
+
+<h3>Why it works — Adding 1 to the inverted bits.</h3>
+  
+ Inversion alone is one short. <br>
+  When we inverted bits we got number which when added to original
+  gives us maximum representable value (for 4 bits it is 15).<br>
+  But we want the result of addition to be zero (with carry ignored).<br>
+  To go from maximum representable value to zero we need to add 1 more,
+  1111 + 1 = 0000 (carry ignored).<br>
+  Thus, after inverting bits we need to add 1 to get correct two's complement
+  representation of negative number.<br>
+  <br>
+  To follow example again:
+  <ol>
+    <li> We started with 3 (0011).</li>
+    <li> Inverted bits to get 1100.</li>
+    <li> Adding 0011 and 1100 gives us 1111 (15).</li>
+    <li> To reach 0 from 15, we need to add 1 more.</li>
+    <li> So, we add 1 to 1100, resulting in 1101.</li>
+  </ol>
+
+ 
+<!--
+<h2>Addition example</h2>
+<ul>
+  <li>+3 = 0011</li>
+  <li>−3 = invert → 1100, add 1 → 1101</li>
+  <li>0011 + 1101 = 0000 (carry ignored)</li>
+</ul>
+<h2>Subtraction example</h2>
+<ul>
+  <li>+18 = 0001 0010</li>
+  <li>−25:
+    <ul>
+      <li>+25 = 0001 1001</li>
+      <li>invert → 1110 0110</li>
+      <li>add 1 → 1110 0111</li>
+    </ul>
+  </li>
+  <li>0001 0010 + 1110 0111 = 1111 1001 (−7)</li>
+</ul>
+-->
+<h2>How it affects your programming?</h2>
+<p>
+It is all well and good to understand how negative numbers are represented
+in binary and how arithmetic is done with them. 
+But question is: Who cares? Doest affect your programming?
+Actually, it does.
+</p>
+<ul>
+  <li>When you declare variable as signed int or
+     unsigned int,
+    it affects how bit patterns are interpreted.</li>
+  <li>Arithmetic operations (+, -, *, /) work the same way for both
+    signed and unsigned integers.</li>
+  <li>However, the results may differ due to different interpretations
+    of the bit patterns.</li>
+  <li>For example, adding two signed numbers may yield a negative result.
+    Do not be surprised</li>
+</ul>
+Here is example in C to demonstrate the point:<br>
+ <a href="Code/un_signed.c" download>  <button>Download file un_signed.c .</button></a>
+
+</body>
+</html>
+
