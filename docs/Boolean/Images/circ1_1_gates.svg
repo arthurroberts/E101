@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 341 170">
+   <polyline fill="none" points="160,26 190,26" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <polyline fill="none" points="70,66 110,66 190,66" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <polyline fill="none" points="150,156 190,156" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <polyline fill="none" points="110,66 110,156 120,156" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <polyline fill="none" points="240,46 280,46" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <polyline fill="none" points="240,136 280,136" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <polyline fill="none" points="130,26 90,26 90,116 190,116" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <polyline fill="none" points="70,26 90,26" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <circle cx="90.0" cy="26.0" fill="rgb(0, 0, 0)" r="5.0" stroke="none" stroke-width="3.0"/>
+   <circle cx="110.0" cy="66.0" fill="rgb(0, 0, 0)" r="5.0" stroke="none" stroke-width="3.0"/>
+   <path d="M215.0,71.0 A25.0,25.0 90.0 0,0 215.0,21.0" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2.0"/>
+   <polyline fill="none" points="215,21 191,21 191,71 215,71" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="2.0"/>
+   <polyline fill="none" points="150,26 131,19 131,33 150,26" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="2.0"/>
+   <circle cx="155.0" cy="26.0" fill="none" r="4.5" stroke="rgb(0, 0, 0)" stroke-width="2.0"/>
+   <circle cx="160.0" cy="26.0" fill="rgb(0, 0, 0)" r="2.0" stroke="none" stroke-width="2.0"/>
+   <circle cx="130.0" cy="26.0" fill="rgb(0, 0, 0)" r="2.0" stroke="none" stroke-width="2.0"/>
+   <rect fill="none" height="18" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="2.0" width="18" x="52" y="18"/>
+   <text fill="rgb(0, 0, 0)" font-family="SansSerif" font-size="12" x="54.0" y="33.0">x1</text>
+   <circle cx="70.0" cy="26.0" fill="rgb(0, 0, 0)" r="2.0" stroke="none" stroke-width="2.0"/>
+   <rect fill="none" height="18" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="2.0" width="18" x="52" y="58"/>
+   <text fill="rgb(0, 0, 0)" font-family="SansSerif" font-size="12" x="54.0" y="73.0">x1</text>
+   <circle cx="70.0" cy="66.0" fill="rgb(0, 0, 0)" r="2.0" stroke="none" stroke-width="2.0"/>
+   <path d="M215.0,161.0 A25.0,25.0 90.0 0,0 215.0,111.0" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2.0"/>
+   <polyline fill="none" points="215,111 191,111 191,161 215,161" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="2.0"/>
+   <polyline fill="none" points="140,156 121,149 121,163 140,156" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="2.0"/>
+   <circle cx="145.0" cy="156.0" fill="none" r="4.5" stroke="rgb(0, 0, 0)" stroke-width="2.0"/>
+   <circle cx="150.0" cy="156.0" fill="rgb(0, 0, 0)" r="2.0" stroke="none" stroke-width="2.0"/>
+   <circle cx="120.0" cy="156.0" fill="rgb(0, 0, 0)" r="2.0" stroke="none" stroke-width="2.0"/>
+   <rect fill="none" height="18" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="2.0" width="18" x="282" y="38"/>
+   <text fill="rgb(0, 0, 0)" font-family="SansSerif" font-size="12" x="284.0" y="53.0">x1</text>
+   <circle cx="300.0" cy="46.0" fill="rgb(0, 0, 0)" r="2.0" stroke="none" stroke-width="2.0"/>
+   <rect fill="none" height="18" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="2.0" width="18" x="282" y="128"/>
+   <text fill="rgb(0, 0, 0)" font-family="SansSerif" font-size="12" x="284.0" y="143.0">x1</text>
+   <circle cx="300.0" cy="136.0" fill="rgb(0, 0, 0)" r="2.0" stroke="none" stroke-width="2.0"/>
+   <text fill="rgb(0, 0, 0)" font-family="SansSerif" font-size="16" font-weight="bold" x="16.0" y="27.0">A</text>
+   <text fill="rgb(0, 0, 0)" font-family="SansSerif" font-size="16" font-weight="bold" x="9.0" y="73.0">B</text>
+   <text fill="rgb(0, 0, 0)" font-family="SansSerif" font-size="16" font-weight="bold" x="312.0" y="47.0">F1</text>
+   <text fill="rgb(0, 0, 0)" font-family="SansSerif" font-size="16" font-weight="bold" x="314.0" y="121.0">F2</text>
+</svg>
