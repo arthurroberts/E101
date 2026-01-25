@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+ 	<link rel="stylesheet" href="../nn_read.css"  />
+</head>
+ <title> Synthesis of circuits. </title>  
+ <script type="text/javascript" async="" src="https://ecs.wgtn.ac.nz/libs/mathjax/26/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>        
+
+<body>
+<h2> Design logic circuit from Truth Table. </h2>
+
+At this point we know how to make simple logic circuits using AND, OR,
+NOT gates. We also know how to combine these gates into more complex
+circuits. But how do we design a circuit for a particular task?<br>
+At last lecture we synthesized a circuit from a requirements. But 
+that was a simple example. What if requirements are more complex?
+Can we have more systematic approach?<br>
+
+<h2> Truth Table as a starting point. </h2>
+
+We can obtain Truth Table from requirements for the system. But Truth
+Table is not a working hardware. How can we convert this table
+into hardware?<br>
+As an example, we want to make a circuit which detects if number is
+prime, i.e. it can not be divided without remainder.
+<p>
+  For numbers from 1 to 8 Truth Table is:
+  <!--<table border="1" cellspacing="0" cellpadding="4">-->
+<table>  
+    <tr> <th> Number</th> <th>x2</th><th>x1</th><th>x0</th><th>Prime?</th> </tr>
+    <tr> <td>0</td> <td>0</td> <td>0</td><td>0</td><td>0</td> </tr>
+    <tr> <td>1</td> <td>0</td> <td>0</td><td>1</td><td>0</td> </tr>
+    <tr> <td>2</td> <td>0</td> <td>1</td><td>0</td><td>1</td> </tr>
+    <tr> <td>3</td> <td>0</td> <td>1</td><td>1</td><td>1</td> </tr>
+
+    <tr> <td>4</td> <td>1</td> <td>0</td><td>0</td><td>0</td> </tr>
+    <tr> <td>5</td> <td>1</td> <td>0</td><td>1</td><td>1</td> </tr>
+    <tr> <td>6</td> <td>1</td> <td>1</td><td>0</td><td>0</td> </tr>
+    <tr> <td>7</td> <td>1</td> <td>1</td><td>1</td><td>1</td> </tr>
+</table>
+</p>
+
+
+We can design a logic circuit from a truth table in two ways:
+<ol>
+    <li> Sum-Of-Products (SOP) method. </li>
+    <li> Product-Of-Sums (POS) method. </li>
+</ol>
+<h3> SOP method. </h3>
+We say, “my prime detector function F evaluates to a 1 when the 
+input is 010 or 011 or 101 or 111.” For all other input combinations
+output is 0. 
+Or we can write the math as
+
+$$ \mathrm{F}=
+\mathrm{input}\ \mathrm{is}\ 010+\mathrm{input}\ \mathrm{is}\ 011
++\mathrm{input}\ \mathrm{is}\ 101+\mathrm{input}\ \mathrm{is}\ 111 $$
+
+We see the input is 010 when \(x_2\) is 0 and \(x_1\) is 1 and \(x_0\) is 0. 
+Remembering how to use and, or, and not from the previous section, 
+we understand that the input is 010 when the expression 
+$$ \overline{x_2}{x}_1\overline{x_0} $$
+ is 1.<br>
+
+We write down a product term for each row of the truth table where
+ the output is 1.
+
+
+Then we sum (OR) all these product terms to get the final expression.<br>
+It makes sense because we encounter all combinations of inputs that produce output 1.
+And we have the equation:
+
+$$ \mathrm{F}=\overline{x_2}{x}_1\overline{x_0}+
+               \overline{x_2}{x}_1{x}_0+
+               {x}_2\overline{x_1}{x}_0+
+               {x}_2{x}_1{x}_0 \tag{1} $$
+
+
+<div class="row">
+<div class="column">
+<figure style="border: 2px solid lightgray; padding: 10px; width: 70% ; margin: 5px auto;">
+<img src="Images/circ1.svg"  style="width: 100%;  height: 100%; object-fit: cover;" alt="circ1.svg">
+<figcaption>  Unknown (as yet) circuit. </figcaption>
+</figure>
+</div>
+<div class="column">
+<table>  
+    <tr> <th> Number</th> <th>x2</th><th>x1</th><th>x0</th><th>Prime?</th> </tr>
+    <tr> <td>0</td> <td>0</td> <td>0</td><td>0</td><td>0</td> </tr>
+    <tr> <td>1</td> <td>0</td> <td>0</td><td>1</td><td>0</td> </tr>
+    <tr> <td>2</td> <td>0</td> <td>1</td><td>0</td><td>1</td> </tr>
+    <tr> <td>3</td> <td>0</td> <td>1</td><td>1</td><td>1</td> </tr>
+
+    <tr> <td>4</td> <td>1</td> <td>0</td><td>0</td><td>0</td> </tr>
+    <tr> <td>5</td> <td>1</td> <td>0</td><td>1</td><td>1</td> </tr>
+    <tr> <td>6</td> <td>1</td> <td>1</td><td>0</td><td>0</td> </tr>
+    <tr> <td>7</td> <td>1</td> <td>1</td><td>1</td><td>1</td> </tr>
+</table>
+</div>
+</div>
+<br>
+Only for combinations 010, 011, 101, and 111 output is 1. For all other
+combinations output is 0.<br> 
+
+And we can make a circuit. For starters we can build circuit as an 
+equation we obtained. Here is the circuit
+
+<figure style="border: 2px solid lightgray; padding: 10px; width: 40% ; margin: 5px auto;">
+<img src="Images/SOP_1.svg"  style="width: 100%;  height: 100%; object-fit: cover;" alt="SOP_1.svg">
+<figcaption>  Implementing SOP formula directly. </figcaption>
+</figure>
+
+<a href="Circs/SOP_1.circ" download>  <button>Download Logisim file.</button></a>
+
+<p>
+So approach is:
+<ol>
+    <li> Pick row in Truth Table for which output should be 1.</li>
+    <li> Make circuit which outputs 1 for this particular combination of inputs.</li>
+    <li> Ignore the row if output for this row is 0.</li>
+    <li> Repeat until there are any 1s as required output. </li>
+    <li> Combine outputs of all circuits with <b>OR</b> gate.</li>
+</ol>
+</p>
+
+Of course, we can simplify the equations and make circuit smaller. More on that later.
+
+<div class="box">
+    <div class="title">Question:.</div>
+     For this Truth Table:
+   <table>
+  <tr> <th>A</th> <th>B</th> <th>F</th> </tr>
+  <tr> <td>0</td> <td>0</td> <td>0</td> </tr>
+  <tr> <td>0</td> <td>1</td> <td>1</td> </tr>
+  <tr> <td>1</td> <td>0</td> <td>1</td> </tr>
+  <tr> <td>1</td> <td>1</td> <td>0</td> </tr>
+  </table>
+  what is correct Sum-Of-Products expression for F(A,B)?<br>
+     <ol>
+      <li> \(F = A + B\) </li>
+      <li> \( F = A B \) </li>
+      <li> \( F= \overline{A} B + A \overline{B} \) </li>
+      <li> \( F = A B + A B \) </li>
+     </ol>
+     <details>
+  <summary>Show:</summary>
+  <p> 3: \( F= \overline{A} B + A \overline{B} \)</p>
+</details>
+</div>
+
+
+<h2>Product of Sums</h2>
+Sum-Of-Products is not only way to obtain the circuit from Truth Table.
+There is <b>Product of Sums (POS)</b>.<br>
+<p>
+The logic for this form is a bit more trying than that for the SOP form. 
+We have to think that “the function F is 1 when the input is not 000 
+  and the input is not 001 and the input is not 100 and the input is not 110.” 
+</p>
+<p>
+  What does it mean to say “the input is not 110”, say? 
+  Well, the input is 110 when \(x_2\) is 1 and \(x_1\) is 1 and \(x_0\) is 0. 
+  So if any one of these inputs is different, the input fails to be 110. 
+  In words, this means that the input is not 110 when x 2 is 0 or when x 1 is 0 or when x 0 is 1.
+   This is not the most straightforward logic ever. <br>
+  With that, we are now ready to display the Product of Sums canonical form. 
+  We look at the rows of 0s on the truth table, invert each variable, and OR them together. 
+  The POS form of the prime number detector function F is given by
+
+$$ \mathrm{F}=\left({x}_2+{x}_1+{x}_0\right)
+              \left({x}_2+{x}_1+\overline{x_0}\right)
+              \left(\overline{x_2}+{x}_1+{x}_0\right)
+              \left(\overline{x_2}+\overline{x_1}+{x}_0\right) \tag{2}$$
+
+</p>
+Here is the picture of this the circuit which implements equation (2)
+<figure style="border: 2px solid lightgray; padding: 10px; width: 40% ; margin: 5px auto;">
+<img src="Images/POS_1.svg"  style="width: 100%;  height: 100%; object-fit: cover;" alt="POS_1.svg">
+<figcaption>  Implementing POS formula directly. </figcaption>
+</figure>
+
+<a href="Circs/POS_1.circ" download>  <button>Download Logisim file.</button></a>
+
+<!--
+<h3>POS Example: Two Inputs</h3>
+<p>
+  For a simple two-input example, consider the function \(F(A,B)\) 
+  that is 1 when the inputs differ (XOR). 
+  The rows where \(F=0\) are \(A=0,B=0\) and \(A=1,B=1\). 
+  Using the POS method, we write a maxterm (sum) for each 0-row and take their product:
+</p>
+$$
+\mathrm{F}(A,B) = \underbrace{(A+B)}_{\text{0 at }A=0,B=0}\;\underbrace{(\overline{A}+\overline{B})}_{\text{0 at }A=1,B=1}
+$$
+<p>
+  This is the canonical POS for XOR with two inputs. It maps directly to a two-level OR–AND implementation: two OR gates feeding an AND gate.
+</p>
+
+<p>
+  Truth table for \(F(A,B)\) (XOR):
+</p>
+<table>
+  <tr> <th>A</th> <th>B</th> <th>F(A,B)</th> </tr>
+  <tr> <td>0</td> <td>0</td> <td>0</td> </tr>
+  <tr> <td>0</td> <td>1</td> <td>1</td> </tr>
+  <tr> <td>1</td> <td>0</td> <td>1</td> </tr>
+  <tr> <td>1</td> <td>1</td> <td>0</td> </tr>
+</table>
+-->
+
+<h2>To be continued...</h2>
+Expressions and circuits obtained by SOP and POS are not optimal.
+We can simplify them using Boolean algebra rules. That will be
+covered in the next lecture.
+</body>
+</html>
+
+<!--
+FIGURE
+ <figure style="border: 2px solid lightgray; padding: 10px; width: 40% ; margin: 5px auto;">
+<img src="Images/integral.svg"  style="width: 100%;  height: 100%; object-fit: cover;" alt="integral.svg">
+<figcaption>  Field produced by charge distributed in volume \(V\). </figcaption>
+</figure>
+
+
+<ol style=" background:rgb(150,150,240);" >
+
+LINK TO PYTHON 
+ <a href="Python/e_field.py" download>  <button>Download file e_field.py .</button></a>
+ 
+SUMMARY
+
+IMPORTANT FORMULA
+--> 
